@@ -9,7 +9,7 @@
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="../static/images/北邮LOGO.png">
+    <link rel="shortcut icon" href="../static/images/icon.jpg">
     <!--Nifty Stylesheet [ REQUIRED ]-->
     <link href="../static/css/nifty.min.css" rel="stylesheet">
 
@@ -23,7 +23,6 @@
     <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
     <link href="../static/css/font-awesome.min.css" rel="stylesheet">
     <link href="../static/css/wiki.css" rel="stylesheet">
-
 
     <!--JAVASCRIPT-->
     <!--=================================================-->
@@ -52,9 +51,32 @@
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="../static/js/nifty-demo.min.js"></script>
     <style type="text/css">
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Hanalei Fill';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.googlefonts.cn/s/hanaleifill/v21/fC1mPYtObGbfyQznIaQzPQi8XgjAllk.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Hanalei Fill';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.googlefonts.cn/s/hanaleifill/v21/fC1mPYtObGbfyQznIaQzPQi8UAjA.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
         .tagsList {
             position: relative;
-            width: 250px;
+            width: 320px;
             height: 250px;
         }
 
@@ -62,7 +84,7 @@
             position: absolute;
             top: 0px;
             left: 0px;
-            font-family: Microsoft YaHei;
+            font-family: 'Hanalei Fill', cursive;
             color: gray;
             font-weight: bold;
             text-decoration: none;
@@ -74,9 +96,41 @@
             letter-spacing: 2px;
         }
 
+        .brand-text {
+            font-size: 20px;
+            font-family: 'Hanalei Fill', cursive;
+        }
+
+
         /* 光标移动到字符则变绿，字符间距扩大*/
         #search:focus {
             border: 1px solid #249e92;
+        }
+
+        .brand-icon {
+            border-radius: 50%;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #profile {
+            width: 345px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #profile img {
+            border-radius: 8rem;
+        }
+
+        #profile p {
+            margin-top: 10px;
         }
     </style>
 
@@ -94,7 +148,7 @@
                 <a href="{{ url_for('index') }}" class="navbar-brand">
                     <img src="../static/images/icon.jpg" alt="Logo" class="brand-icon">
                     <div class="brand-title">
-                        <span class="brand-text">陈学楷研创</span>
+                        <span class="brand-text">Harry Potter</span>
                     </div>
                 </a>
             </div>
@@ -111,7 +165,11 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-top-links pull-left">
-                    <h4>基于金融知识图谱的知识计算引擎构建</h4>
+                    <h4>基于哈利波特知识图谱的人物关系问答系统&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 style="color:#808e9b">Copyright&#0169; 2022 郎文翀、黄硕、相里千卉 &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All
+                        Rights
+                        Reserved
+                    </h4>
                 </ul>
             </div>
             <!--End Navbar Dropdown-->
@@ -129,29 +187,28 @@
                         <div class="nano-content">
                             <ul id="mainnav-menu" class="list-group">
                                 <!--Category name1-->
-                                <li class="list-header">可视化功能介绍</li>
+                                <li class="list-header">可视化展示</li>
                                 <!--Menu list item-->
                                 <li>
-                                    <a href="{{ url_for('search_page')}}">
+                                    <a href="{{ url_for('query_node')}}">
                                         <i class="fa fa-search" style="width:24px"></i>
-                                        <span class="menu-title"><strong>检索节点信息</strong></span>
+                                        <span class="menu-title"><strong>检索节点</strong></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url_for('get_all_relation') }}">
+                                    <a href="{{ url_for('answer_robot') }}">
                                         <i class="fa fa-pie-chart" style="width:24px"></i>
                                         <span class="menu-title"><strong>问答系统</strong></span>
                                     </a>
                                 </li>
-                                <!--Menu list item-->
 
                                 <li class="list-divider"></li>
 
                                 <!--Category name2-->
-                                <li class="list-header">项目介绍</li>
+                                <li class="list-header">项目组介绍</li>
                                 <!--Menu list item-->
                                 <li>
-                                    <a href="{{ url_for('dialogue_page') }}">
+                                    <a href="{{ url_for('answer_robot') }}">
                                         <i class="fa fa-comments" style="width:24px"></i>
                                         <span class="menu-title"><strong>团队成员</strong></span>
                                     </a>
@@ -170,82 +227,48 @@
         <div id="content-container">
             <!--Page content-->
             <div id="page-content">
-                <h4 class="text-main pad-btm bord-btm">检索节点信息</h4>
+                <!--                <h4 class="text-main pad-btm bord-btm">检索节点信息</h4>-->
 
                 <!--选择输入模块-->
                 <div class="row">
-                    <div class="col-lg-6"></div>
+                    <div class="col-lg-7"></div>
                     <div class="col-lg-2"></div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="input-group">
-                        <span>
-                        <select id="choice" class="form-select" aria-label="Default select example"
-                                style="float: left; display: table-cell; width: 58px;height: 37px">
-                            <option value="0">股东</option>
-                            <option value="1">股票</option>
-                            <option value="2">概念</option>
-                        </select></span>
                             <input type="text" id="search" class="form-control input-lg"
-                                   placeholder="请输入你要检索的节点信息..." style="width: 350px">
+                                   placeholder="请输入要检索的人物节点如哈利·波特" style="width: 260px">
                             <span class="input-group-addon btn btn-mint" onclick="search()">搜索</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row" style="height: 40px;"></div>
+                <div class="row" style="height: 20px;">
+                    <h4 class="text-main pad-btm bord-btm">检索节点信息</h4>
+                </div>
                 <div class="row">
                     <!--echarts图-->
-                    <div class="col-lg-8" style="height: 700px" id="guanxi"></div>
+                    <div class="col-lg-9" style="height: 700px" id="guanxi"></div>
                     <!--快捷直达模块-->
                     <div class="col-lg-2"></div>
-                    <div class="col-lg-4 tagsList" id="shareholder" style="display: block">
-                        <a href="#" data="中信证券" cate="0">中信证券</a>
-                        <a href="#" data="方正富邦基金" cate="0">方正富邦基金</a>
-                        <a href="#" data="叶钦峰" cate="0">叶钦峰</a>
-                        <a href="#" data="中国银泰投资有限公司" cate="0">中国银泰投资有限公司</a>
-                        <a href="#" data="胡荣达" cate="0">胡荣达</a>
-                        <a href="#" data="中欧基金" cate="0">中欧基金</a>
-                        <a href="#" data="亿泽控股有限公司" cate="0">亿泽控股有限公司</a>
-                        <a href="#" data="王石" cate="0">王石</a>
-                        <a href="#" data="易方达基金" cate="0">易方达基金</a>
-                        <a href="#" data="中国电子有限公司" cate="0">中国电子有限公司</a>
-                        <a href="#" data="兴业财富资产" cate="0">兴业财富资产</a>
-                        <a href="#" data="张志勇" cate="0">张志勇</a>
+                    <div class="col-lg-3 tagsList" id="shareholder" style="display: block">
+                        <a href="#" data="罗恩·韦斯莱" cate="0">罗恩·韦斯莱</a>
+                        <a href="#" data="哈利·波特" cate="0">哈利·波特</a>
+                        <a href="#" data="西弗勒斯·斯内普" cate="0">西弗勒斯·斯内普</a>
+                        <a href="#" data="阿不思·邓布利多" cate="0">阿不思·邓布利多</a>
+                        <a href="#" data="西比尔·特里劳尼" cate="0">西比尔·特里劳尼</a>
+                        <a href="#" data="汤姆·里德尔" cate="0">汤姆·里德尔</a>
+                        <a href="#" data="加里克·奥利凡德" cate="0">加里克·奥利凡德</a>
+                        <a href="#" data="卢娜·洛夫古德" cate="0">卢娜·洛夫古德</a>
+                        <a href="#" data="米勒娃·麦格" cate="0">米勒娃·麦格 </a>
+                        <a href="#" data="多洛雷斯·乌姆里奇" cate="0">多洛雷斯·乌姆里奇</a>
+                        <a href="#" data="纳威·隆巴顿" cate="0">纳威·隆巴顿</a>
+                        <a href="#" data="阿格斯·费尔奇" cate="0">阿格斯·费尔奇</a>
                     </div>
-                    <div class="col-lg-4 tagsList" id="stock" style="display: none">
-                        <a href="#" data="平安银行" cate="1">平安银行</a>
-                        <a href="#" data="世纪星源" cate="1">世纪星源</a>
-                        <a href="#" data="富奥股份" cate="1">富奥股份</a>
-                        <a href="#" data="德赛电池" cate="1">德赛电池</a>
-                        <a href="#" data="国际实业" cate="1">国际实业</a>
-                        <a href="#" data="泸州老窖" cate="1">泸州老窖</a>
-                        <a href="#" data="宁德时代" cate="1">宁德时代</a>
-                        <a href="#" data="长虹美菱" cate="1">长虹美菱</a>
-                        <a href="#" data="我爱我家" cate="1">我爱我家</a>
-                        <a href="#" data="格力电器" cate="1">格力电器</a>
-                        <a href="#" data="世嘉科技" cate="1">世嘉科技</a>
-                        <a href="#" data="绿康生化" cate="1">绿康生化</a>
-                    </div>
-                    <div class="col-lg-4 tagsList" id="concept" style="display: none">
-                        <a href="#" data="银行" cate="2">银行</a>
-                        <a href="#" data="碳纤维" cate="2">碳纤维</a>
-                        <a href="#" data="特高压" cate="2">特高压</a>
-                        <a href="#" data="光通信" cate="2">光通信</a>
-                        <a href="#" data="高速公路" cate="2">高速公路</a>
-                        <a href="#" data="有色-铝" cate="2">有色-铝</a>
-                        <a href="#" data="保险" cate="2">保险</a>
-                        <a href="#" data="券商" cate="2">券商</a>
-                        <a href="#" data="房地产" cate="2">房地产</a>
-                        <a href="#" data="高价股" cate="2">高价股</a>
-                        <a href="#" data="教育" cate="2">教育</a>
-                        <a href="#" data="涤纶" cate="2">涤纶</a>
-                    </div>
-
 
                     <!--信息表模块 -->
-                    <div class="col-lg-4">
-                        <div class="row" style="height: 60px;"></div>
-                        <div style="height: 30px; font-size: 18px; font-family: 宋体; border-top: 1px solid black; padding:9px 0 0 13px">
+                    <div class="col-lg-3">
+                        <div class="row" style="height: 20px;"></div>
+                        <div style=" margin-top:20px; height: 30px; font-size: 18px; font-family: 宋体; border-top: 1px solid black; padding:9px 0 0 13px">
                             <strong>详细信息</strong></div>
                         <div class="row">
                             <div class="basic-info">
@@ -262,11 +285,6 @@
         <!--END CONTENT CONTAINER-->
 
     </div>
-    <!-- FOOTER -->
-    <footer id="footer">
-        <p class="pad-lft">Copyright&#0169; 2022 陈学楷 &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved </p>
-    </footer>
-    <!-- END FOOTER -->
 
     <!-- SCROLL PAGE BUTTON -->
     <button class="scroll-top btn">
@@ -286,19 +304,8 @@
                     $("#stock").hide();
                     $("#concept").hide();
                     change(choice);
-                } else if (choice === '1') {
-                    $("#shareholder").hide();
-                    $("#stock").show();
-                    $("#concept").hide();
-                    change(choice);
-                } else if (choice === '2') {
-                    $("#concept").show();
-                    $("#shareholder").hide();
-                    $("#stock").hide();
-                    change(choice);
                 }
             })
-
         })
     });
 
@@ -319,15 +326,15 @@
 
     myChart.hideLoading();
     option = {
-        animationDurationUpdate: 1500,
+        animationDurationUpdate: 1000,
         animationEasingUpdate: 'quinticInOut',
         legend: {
             x: "center",
             show: true,
-            data: ["股东", "股票", "概念"],
-            textStyle: {fontSize: 15}
+            data: ["主节点", "相关节点"],
+            textStyle: {fontSize: 12}
         },
-        color: ['#FF3EFF', '#28cad8', '#fc853e'],
+        color: ['#FD7272', '#34ace0'],
         series: [  // 图谱样式设置
             {
                 type: 'graph',
@@ -350,11 +357,11 @@
                 force: {
                     repulsion: 1000
                 },
-                categories: [{name: '股东',}, {name: '股票'}, {name: '概念',}],
+                categories: [{name: '主节点',}, {name: '相关节点'}],
                 label: {
                     normal: {
                         show: true,
-                        textStyle: {fontSize: 15, color: '#000000'},
+                        textStyle: {fontSize: 12, color: '#000000'},
                     }
                 },
                 tooltip: {  //好像没什么用
@@ -370,7 +377,7 @@
                     normal: {
                         opacity: 0.9,
                         width: 1,
-                        curveness: 0.3
+                        curveness: 0.5
                     }
                 },
                 nodes: [],
@@ -407,15 +414,17 @@
     });
 
     //超链接直达
-    $(".col-lg-4 a").click(function () {
+    $(".col-lg-3 a").click(function () {
         $.getJSON('/search_node', {
             name: $(this).attr("data"),
-            choice: $(this).attr("cate"),
         }, function (json) {
+            // console.log('hhh')
             // 加载图对象
             option.series[0].nodes = json.nodes;
             option.series[0].links = json.links;
             myChart.setOption(option, true);
+            console.log(json.html)
+            $("#profile").html(json.html);
 
         })
     });
@@ -424,12 +433,13 @@
     function search() {
         $.getJSON('/search_node', {
             name: $("#search").val(),
-            choice: $("#choice").val(),
         }, function (json) {
+            // console.log('hhhh')
             option.series[0].nodes = json.nodes;
             option.series[0].links = json.links;
             myChart.setOption(option, true);
-
+            console.log(json.html)
+            $("#profile").html(json.html);
         });
     }
 </script>

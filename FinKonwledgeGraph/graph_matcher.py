@@ -26,7 +26,8 @@ class GraphMatcher:
                 relation = self.formatRelation(item['r'])
                 obj = item['n.名称']
                 response += f'{index + 1}、 {entity}的{relation}是{obj}\n'
-            print(response)
+            # print(response)
+        return rtn
 
     def matchRelationOfTwoEntities(self, entity1, entity2):
         '''

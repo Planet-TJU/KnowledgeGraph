@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify, json
 
+from ShowKnowledge.neodb.query_graph import query, get_details
+
 app = Flask(__name__)
 
 
@@ -10,8 +12,29 @@ def index(name=None):
 
 
 @app.route('/query_node', methods=['GET', 'POST'])
-def search_page():
+def query_node():
     return render_template('query_node.html')
+
+
+@app.route('/search_node', methods=['GET', 'POST'])
+def search_node():
+    name = request.args.get('name')
+    json_data = query(str(name))
+    return jsonify(json_data)
+
+
+@app.route('/answer_robot', methods=['GET', 'POST'])
+def answer_robot():
+    return render_template('answer_robot.html')
+
+
+@app.route('/get_chart', methods=['GET', 'POST'])
+def get_chart():
+    node_or_edge = json.loads(request.form.get('type'))  # $.ajax传多个参数只能post请求，对应form
+    data = json.loads(request.form.get('data'))
+    nodes = json.loads(request.form.get('nodes'))
+    json_data = get_details(node_or_edge, data, nodes)
+    return jsonify(json_data)
 
 
 if __name__ == '__main__':
