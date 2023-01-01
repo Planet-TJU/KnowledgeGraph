@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, json
 
+from ShowKnowledge.neodb.robot_answer import get_robot_answer
 from ShowKnowledge.neodb.query_graph import query, get_details
 
 app = Flask(__name__)
@@ -16,16 +17,16 @@ def query_node():
     return render_template('query_node.html')
 
 
+@app.route('/answer_robot', methods=['GET', 'POST'])
+def answer_robot():
+    return render_template('answer_robot.html')
+
+
 @app.route('/search_node', methods=['GET', 'POST'])
 def search_node():
     name = request.args.get('name')
     json_data = query(str(name))
     return jsonify(json_data)
-
-
-@app.route('/answer_robot', methods=['GET', 'POST'])
-def answer_robot():
-    return render_template('answer_robot.html')
 
 
 @app.route('/get_chart', methods=['GET', 'POST'])
@@ -34,6 +35,15 @@ def get_chart():
     data = json.loads(request.form.get('data'))
     nodes = json.loads(request.form.get('nodes'))
     json_data = get_details(node_or_edge, data, nodes)
+    return jsonify(json_data)
+
+
+@app.route('/dialogue_answer', methods=['GET', 'POST'])
+def dialogue_answer():
+    question = request.args.get('text')
+    ans = get_robot_answer(str(question))
+    json_data = {'data': ans}
+    json_data['data'].replace("\n", "<br/>")
     return jsonify(json_data)
 
 

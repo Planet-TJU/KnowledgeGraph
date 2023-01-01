@@ -1,6 +1,6 @@
 import random
 from time import sleep
-from graph_matcher import GraphMatcher
+from FinKonwledgeGraph.graph_matcher import GraphMatcher
 
 graph_matcher = GraphMatcher()
 

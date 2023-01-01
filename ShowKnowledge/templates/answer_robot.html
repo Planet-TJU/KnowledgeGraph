@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于哈利波特知识图谱的人物关系问答系统</title>
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../static/images/icon.jpg">
+
+    <!--对话渲染模板-->
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css">
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/nifty.css" rel="stylesheet">
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/wiki.css" rel="stylesheet">
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="../static/css/pace.min.css" rel="stylesheet">
+
+    <script src="../static/js/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="../static/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="../static/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="../static/js/nifty.min.js"></script>
+    <script src="../static/js/icons.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="../static/js/nifty-demo.min.js"></script>
+    <style>
+        /* latin-ext */
+        @font-face {
+            font-family: 'Hanalei Fill';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.googlefonts.cn/s/hanaleifill/v21/fC1mPYtObGbfyQznIaQzPQi8XgjAllk.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Hanalei Fill';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.googlefonts.cn/s/hanaleifill/v21/fC1mPYtObGbfyQznIaQzPQi8UAjA.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        .brand-text {
+            font-size: 20px;
+            font-family: 'Hanalei Fill', cursive;
+        }
+
+        .brand-icon {
+            border-radius: 50%;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .col-l-t {
+            eight: 70vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            padding: 0 !important;
+            width: 90%;
+            height: 80%;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--NAVBAR-->
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+            <!--Brand logo & name-->
+            <div class="navbar-header">
+                <a href="{{ url_for('index') }}" class="navbar-brand">
+                    <img src="../static/images/icon.jpg" alt="Nifty Logo" class="brand-icon">
+                    <div class="brand-title">
+                        <span class="brand-text">Harry Potter</span>
+                    </div>
+                </a>
+            </div>
+            <!--End brand logo & name-->
+
+            <!--Navbar Dropdown-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+                    <!--Navigation toogle button-->
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="demo-pli-view-list"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-top-links pull-left">
+                    <h4>基于哈利波特知识图谱的人物关系问答系统&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 style="color:#808e9b">Copyright&#0169; 2022 郎文翀、黄硕、相里千卉 &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All
+                        Rights
+                        Reserved
+                    </h4>
+                </ul>
+            </div>
+            <!--End Navbar Dropdown-->
+        </div>
+    </header>
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+        <!--MAIN NAVIGATION-->
+        <nav id="mainnav-container">
+            <div id="mainnav">
+                <!--Menu-->
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content">
+                            <ul id="mainnav-menu" class="list-group">
+                                <!--Category name1-->
+                                <li class="list-header">可视化展示</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="{{ url_for('query_node')}}">
+                                        <i class="fa fa-search" style="width:24px"></i>
+                                        <span class="menu-title"><strong>检索节点</strong></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('answer_robot') }}">
+                                        <i class="fa fa-pie-chart" style="width:24px"></i>
+                                        <span class="menu-title"><strong>问答系统</strong></span>
+                                    </a>
+                                </li>
+
+                                <li class="list-divider"></li>
+
+                                <!--Category name2-->
+                                <li class="list-header">项目组介绍</li>
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="{{ url_for('answer_robot') }}">
+                                        <i class="fa fa-comments" style="width:24px"></i>
+                                        <span class="menu-title"><strong>团队成员</strong></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--End menu-->
+
+            </div>
+        </nav>
+        <!--END MAIN NAVIGATION-->
+
+        <!--CONTENT CONTAINER-->
+        <div id="content-container">
+            <!--Page content-->
+            <div id="page-content">
+
+                <div id="col-l" style="height:100vh;width: 100%">
+                    <div class="col-l-t" style="height: 70vh;width: 100%">
+                        <div class="content">
+                            <div class="bubble" id="Chat">
+                                <!--客服-->
+                                <div class="msg clearfix">
+                                    <div class="user-assistant"></div>
+                                    <span class="triangle"></span>
+                                    <div class="article"><p>
+                                        你好，小哥哥/小姐姐，欢迎参观体验我们团队（郎文翀、黄硕、相里千卉）开发的基于哈利波特人物关系知识图谱的问答系统。</p>
+                                        <p>
+                                            我是机器人[马尔福少爷]，可以基于已有的400+个实体类，1.7w+关系数据回答您关于哈利波特人物关系的问题OvO！</p>
+                                        <p>由于开发小哥哥能力有限,我还不是那么聪明。。。。。</p>
+                                        <p>所以麻烦您提问时按照如下模式进行提问，否则笨笨的我暂时是看不懂问题的@……@</p>
+                                    </div>
+                                </div>
+                                <!--客户-->
+                                <div class="msg fr"><span class="triangle right"></span>
+                                    <div class="article">测试</div>
+                                </div>
+                                <!--客服-->
+                                <div class="msg clearfix">
+                                    <div class="user-assistant"></div>
+                                    <span class="triangle right"></span>
+                                    <div class="article">马上为您查找，请稍候.....</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-l-b">
+                        <div class="faq-input-content">
+                            <label for="talkcontent"></label>
+                            <textarea name="question" class="input" id="talkcontent" placeholder="请输入您的问题"
+                                      autocomplete="off"></textarea>
+                            <button id="sendbtn" class="btn"
+                                    style="height: 36px;width: 80px;line-height: 50%;margin-right: 7px">发送
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End page content-->
+        </div>
+        <!--END CONTENT CONTAINER-->
+    </div>
+
+    <!-- SCROLL PAGE BUTTON -->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!-- END SCROLL PAGE BUTTON -->
+</div>
+
+<!--JavaScript内容，实现ChatSentClient()-->
+<script type="text/javascript">
+    window.onload = function () {
+        var input = document.getElementById('talkcontent');  //查找缓存
+        document.getElementById('sendbtn').onclick = function () {
+            ChatSendClient();
+        }
+    }
+    //回车键事件
+    $(document).keypress(function (e) {
+        if (e.which === 13) {
+            ChatSendClient();
+            event.returnValue = false;
+        }
+    });
+
+    function ChatSendClient() {
+        //将用户消息上传至消息记录框
+
+        var text = $('#talkcontent').val(),   //取输入内容
+            $msgbox = $('#Chat'),  //消息列表（拼接所有问答），bubble的id
+            sMesContent = '',  //用户单次提问html
+            aMesContent = '';  //客服回答html
+        if (text === '') {
+            alert('请输入内容');
+            return;
+        } else {
+            sMesContent = '<div class="msg fr"><span class="triangle right"></span><div class="article">' + text + '</div></div>'
+            $msgbox.html($msgbox.html() + sMesContent)
+            document.getElementById("talkcontent").value = "";
+            $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight + 'px'}); //自动拉到最底部
+            // console.log(text)
+            //获取后端数据$.getJSON()或$.ajax()
+            $.getJSON('/dialogue_answer', {
+                'text': text,  //{'text':'text'}为传入后端的数据格式
+            }, function (result) {  //json为返回的json值
+                aMesContent = '<div class="msg clearfix"><div class="user-assistant"></div><span class="triangle right"></span><div class="article">' + result.data.replace("\n", "<br>") + '</div></div>'
+                $msgbox.html($msgbox.html() + aMesContent)
+                $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight + 'px'}); //自动拉到最底部
+            });
+        }
+
+
+    }
+</script>
+</body>
+</html>
