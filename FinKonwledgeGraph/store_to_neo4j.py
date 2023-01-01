@@ -35,6 +35,7 @@ for item in entitySet:
 '''
 创建哈利波特关系网
 '''
+print('创建哈利波特实体关系知识图谱')
 for idx, each_row in tqdm(harrypotter_net.iterrows()):
     node1 = matcher.match('实体', 名称=each_row['entity1']).first()
     node2 = matcher.match('实体', 名称=each_row['entity2']).first()
@@ -42,4 +43,4 @@ for idx, each_row in tqdm(harrypotter_net.iterrows()):
         r = Relationship(node1, each_row['relation'], node2)
         graph.create(r)
 
-print('已创建完成')
+print('知识图谱已创建完成')

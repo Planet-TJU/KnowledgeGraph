@@ -37,7 +37,7 @@ class AnswerRobot:
     def introduce(self):
         print_one_by_one(
             '你好，小哥哥/小姐姐，欢迎参观体验我们团队（郎文翀、黄硕、相里千卉）开发的基于哈利波特人物关系知识图谱的问答系统。\n')
-        print_one_by_one('我是机器人[IKUN]，可以基于已有的40个实体类，1.7w+关系数据回答您关于哈利波特的问题OvO！\n')
+        print_one_by_one('我是机器人[IKUN]，可以基于已有的400+个实体类，1.7w+关系数据回答您关于哈利波特的问题OvO！\n')
         print_one_by_one('由于开发小哥哥能力有限,我还不是那么聪明。。。。。\n')
         print_one_by_one('所以麻烦您提问时按照如下模式进行提问，否则笨笨的我暂时是看不懂问题的@……@\n')
 

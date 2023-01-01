@@ -1,0 +1,117 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/images/icon.jpg">
+    <title>开启探索</title>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        @font-face {
+            font-family: 'SentyGoldenBell';
+            font-style: normal;
+            font-weight: normal;
+            font-display: swap;
+            src: url(https://fastly.jsdelivr.net/gh/Langwenchong/cdn/font/SentyGoldenBell.woff2) format('woff2');
+        }
+
+        body {
+            height: 100vh !important;
+            overflow: hidden;
+            background: #fff !important;
+        }
+
+        #container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background: #fff;
+        }
+
+        #bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: url("../static/images/bg.jpg");
+            background-position: 50% 100%;
+            background-size: 70% 60%;
+            background-repeat: no-repeat;
+        }
+
+        .cls-content {
+            padding-top: 0 !important;
+        }
+
+        .sub-title {
+            font-size: 24px;
+            /*text-align: right;*/
+        }
+
+        .mar-ver {
+            margin-top: 75px !important;
+        }
+
+        #a {
+            transition: .3s;
+            font-size: 20px;
+            width: 220px;
+            display: block;
+            margin: 0 auto;
+            /*text-decoration: none;*/
+            padding: 15px 50px;
+            border-radius: 8px;
+            border: 1px solid #000000;
+            background-color: transparent;
+            text-align: center;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        #a:hover {
+            background-color: #84817a;
+            cursor: pointer;
+            color: #fff
+        }
+
+
+        p {
+            font-size: 60px;
+            font-weight: lighter;
+            font-family: 'SentyGoldenBell';
+            margin-top: 10px;
+        }
+    </style>
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="container" class="cls-container">
+    <div id="bg"></div>
+
+    <!-- BACKGROUND IMAGE -->
+    <!--===================================================-->
+
+    <!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+        <div class="mar-ver pad-btm">
+
+            <p class="text-muted" style="color:black ">基于哈利波特知识图谱的人物关系问答系统</p>
+            <p class="sub-title">————创作团队：郎文翀、黄硕、相里千卉</p>
+            <a id="a" href="{{ url_for('search_page')}}">开启探索</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
