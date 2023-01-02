@@ -99,6 +99,10 @@
             width: 90%;
             height: 80%;
         }
+
+        .article {
+            margin-bottom: 20px;
+        }
     </style>
 
 </head>
@@ -203,22 +207,14 @@
                                     <div class="user-assistant"></div>
                                     <span class="triangle"></span>
                                     <div class="article"><p>
-                                        你好，小哥哥/小姐姐，欢迎参观体验我们团队（郎文翀、黄硕、相里千卉）开发的基于哈利波特人物关系知识图谱的问答系统。</p>
-                                        <p>
-                                            我是机器人[马尔福少爷]，可以基于已有的400+个实体类，1.7w+关系数据回答您关于哈利波特人物关系的问题OvO！</p>
-                                        <p>由于开发小哥哥能力有限,我还不是那么聪明。。。。。</p>
-                                        <p>所以麻烦您提问时按照如下模式进行提问，否则笨笨的我暂时是看不懂问题的@……@</p>
+                                        你好，小哥哥/小姐姐，欢迎参观体验我们团队（郎文翀、黄硕、相里千卉）开发的基于哈利波特人物关系知识图谱的问答系统。
+                                        我是机器人[马尔福少爷]，可以基于已有的400+个实体类，1.7w+关系数据回答您关于哈利波特人物关系的问题OvO！
+                                        由于开发小哥哥能力有限,我还不是那么聪明。。。。。所以麻烦您提问时按照如下模式进行提问，否则笨笨的我暂时是看不懂问题的@……@</p>
                                     </div>
                                 </div>
                                 <!--客户-->
                                 <div class="msg fr"><span class="triangle right"></span>
-                                    <div class="article">测试</div>
-                                </div>
-                                <!--客服-->
-                                <div class="msg clearfix">
-                                    <div class="user-assistant"></div>
-                                    <span class="triangle right"></span>
-                                    <div class="article">马上为您查找，请稍候.....</div>
+                                    <div class="article">好的，那我该怎么和你交流呢？</div>
                                 </div>
                             </div>
                         </div>
@@ -278,19 +274,33 @@
             $msgbox.html($msgbox.html() + sMesContent)
             document.getElementById("talkcontent").value = "";
             $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight + 'px'}); //自动拉到最底部
+            if (text === '关系列表') {
+                //     由于加载慢，先说等待
+                aMesContent = '<div class="msg clearfix"><div class="user-assistant"></div><span class="triangle right"></span><div class="article">由于数据较多，请您稍加等待，我正在全力为您搜索@……@</div></div>'
+                $msgbox.html($msgbox.html() + aMesContent)
+                $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight  + 'px'}); //自动拉到最底部
+            }
             // console.log(text)
             //获取后端数据$.getJSON()或$.ajax()
             $.getJSON('/dialogue_answer', {
                 'text': text,  //{'text':'text'}为传入后端的数据格式
             }, function (result) {  //json为返回的json值
-                aMesContent = '<div class="msg clearfix"><div class="user-assistant"></div><span class="triangle right"></span><div class="article">' + result.data.replace("\n", "<br>") + '</div></div>'
+                aMesContent = '<div class="msg clearfix"><div class="user-assistant"></div><span class="triangle right"></span><div class="article">' + result.data.replace('\n', "<br/>") + '</div></div>'
                 $msgbox.html($msgbox.html() + aMesContent)
-                $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight + 'px'}); //自动拉到最底部
+                $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight  + 'px'}); //自动拉到最底部
             });
         }
-
-
     }
+
+    var $msgbox = $('#Chat');  //消息列表（拼接所有问答），bubble的id
+    $.getJSON('/dialogue_answer', {
+        'text': '帮助',  //{'text':'text'}为传入后端的数据格式
+    }, function (result) {  //json为返回的json值
+        aMesContent = '<div class="msg clearfix"><div class="user-assistant"></div><span class="triangle right"></span><div class="article">' + result.data.replace("\n", "<br>") + '</div></div>'
+        $msgbox.html($msgbox.html() + aMesContent)
+        $('.col-l-t').animate({scrollTop: document.getElementById('Chat').scrollHeight + 'px'}); //自动拉到最底部
+    });
+
 </script>
 </body>
 </html>

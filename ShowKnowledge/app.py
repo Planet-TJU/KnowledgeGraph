@@ -41,9 +41,8 @@ def get_chart():
 @app.route('/dialogue_answer', methods=['GET', 'POST'])
 def dialogue_answer():
     question = request.args.get('text')
-    ans = get_robot_answer(str(question))
+    ans = get_robot_answer(str(question)).replace('\n', '<br/>')
     json_data = {'data': ans}
-    json_data['data'].replace("\n", "<br/>")
     return jsonify(json_data)
 
 

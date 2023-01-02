@@ -24,6 +24,7 @@ class AnswerRobot:
             if (index + 1) % 5 == 0:
                 response += '\n'
         print(response)
+        return response
 
     def getEntities(self):
         entityList = list(random.sample(graph_matcher.getEntities(), 20))
@@ -32,7 +33,8 @@ class AnswerRobot:
             response += f'{index + 1}.{item} '
             if (index + 1) % 5 == 0:
                 response += '\n'
-        print(response)
+        # print(response)
+        return response
 
     def introduce(self):
         print_one_by_one(
@@ -42,15 +44,19 @@ class AnswerRobot:
         print_one_by_one('所以麻烦您提问时按照如下模式进行提问，否则笨笨的我暂时是看不懂问题的@……@\n')
 
     def help(self):
-        print_one_by_one('============查询使用手册===========\n', 0)
-        print_one_by_one('1. 查询某个人物的关系网请输入[关系网-哈利·波特]或者其他人物名称\n', 0)
-        print_one_by_one('2. 查询两个人物的关系请输入[关系-哈利·波特-汤姆·里德尔]或者其他两个人物名称\n', 0)
-        print_one_by_one('3. 查询N条具有指定关系的伙伴，请输入[伙伴-同门-20]查询显示最多20条具有同门关系的伙伴\n', 0)
-        print_one_by_one(
-            '4. 为了方便您进行对象查询或者关系查询，可以通过输入[对象列表]和[关系列表]查询N条信息，由于数据过多我们将随机挑选20种为您显示\n',
-            0)
-        print_one_by_one('5. 输入[帮助]查询使用手册\n', 0)
-        print_one_by_one('6. 如果您不想咨询了请输入[辛苦IKUN了]，我就下班啦！\n', 0)
+        # print_one_by_one('============查询使用手册===========\n', 0)
+        # print_one_by_one('1. 查询某个人物的关系网请输入[关系网-哈利·波特]或者其他人物名称\n', 0)
+        # print_one_by_one('2. 查询两个人物的关系请输入[关系-哈利·波特-汤姆·里德尔]或者其他两个人物名称\n', 0)
+        # print_one_by_one('3. 查询N条具有指定关系的伙伴，请输入[伙伴-同门-20]查询显示最多20条具有同门关系的伙伴\n', 0)
+        # print_one_by_one(
+        #     '4. 为了方便您进行对象查询或者关系查询，可以通过输入[对象列表]和[关系列表]查询N条信息，由于数据过多我们将随机挑选20种为您显示\n',
+        #     0)
+        # print_one_by_one('5. 输入[帮助]查询使用手册\n', 0)
+        # print_one_by_one('6. 如果您不想咨询了请输入[辛苦你了]，我就下班啦！\n', 0)
+        response = '============查询使用手册===========\n1. 查询某个人物的关系网请输入[关系网-哈利·波特]或者其他人物名称\n2. 查询两个人物的关系请输入[关系-哈利·波特-汤姆·里德尔]或者其他两个人物名称\n3. 查询N条具有指定关系的伙伴，请输入[伙伴-同门-20]查询显示最多20条具有同门关系的伙伴\n4. 为了方便您进行对象查询或者关系查询，可以通过输入[对象列表]和[关系列表]查询N条信息，由于数据过多我们将随机挑选20种为您显示\n5. 输入[帮助]查询使用手册\n6. 如果您不想咨询了请输入[辛苦你了]，我就下班啦！\n'
+        return response
 
     def stop(self):
         print_one_by_one('拜拜了您嘞^_^!')
+        response = '拜拜了您嘞^_^!'
+        return response

@@ -4,8 +4,8 @@ from answer_robot import AnswerRobot
 graph_matcher = GraphMatcher()
 
 answer_robot = AnswerRobot()
-answer_robot.introduce()
-answer_robot.help()
+# answer_robot.introduce()
+# answer_robot.help()
 while True:
     query = input('用户：')
     if query == '辛苦IKUN了':

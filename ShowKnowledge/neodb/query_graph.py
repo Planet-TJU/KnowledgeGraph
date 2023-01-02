@@ -19,7 +19,7 @@ def getAvatarAndSdecription(name):
 def query(name):
     json_data = {'nodes': [], "links": [], 'html': ""}
     graph_matcher = GraphMatcher()
-    rtn = graph_matcher.matchGraphOfEntity(name)
+    rtn = graph_matcher.matchGraphOfEntity(name)['rtn']
     # print(rtn)
     result = {}
     result['avatar'] = getAvatarAndSdecription(name)['avatar']

@@ -27,7 +27,7 @@ class GraphMatcher:
                 obj = item['n.名称']
                 response += f'{index + 1}、 {entity}的{relation}是{obj}\n'
             # print(response)
-        return rtn
+        return {'rtn': rtn, 'response': response}  # 这里同时需要两种不同的返还类型
 
     def matchRelationOfTwoEntities(self, entity1, entity2):
         '''
@@ -44,6 +44,7 @@ class GraphMatcher:
         else:
             response = f'您查询的两个人物实体暂时没有任何关系！'
         print(response)
+        return response
 
     def matchEntitiesByRelation(self, relation, nums):
         '''
@@ -62,6 +63,7 @@ class GraphMatcher:
                 entity2 = item['n.名称']
                 response += f'{index + 1}、 {entity1}的{relation}是{entity2}\n'
             print(response)
+            return response
 
     def getEntities(self):
         # 获取所有实体
