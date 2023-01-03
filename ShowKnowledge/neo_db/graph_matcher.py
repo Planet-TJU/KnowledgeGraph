@@ -5,7 +5,7 @@ class GraphMatcher:
     """基于 cypher 语句查询数据库"""
 
     def __init__(self):
-        self.graph = Graph('bolt://localhost:7687/finance_demo/db/', auth=('neo4j', 'neo4j123'))
+        self.graph = Graph('bolt://localhost:7687', auth=('neo4j', '123456'))
 
     def parse_graph(self, ques_types, entities):
         """转换成 cypher 语句查询"""

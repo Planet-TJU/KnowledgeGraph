@@ -6,7 +6,7 @@ from py2neo import Graph, Node, Relationship, NodeMatcher
 连接Neo4j
 '''
 
-graph = Graph('bolt://localhost:7687', auth=('neo4j', 'neo4j123'))
+graph = Graph('bolt://localhost:7687', auth=('neo4j', '123456'))
 # 创建搜索器
 matcher = NodeMatcher(graph)
 print(graph)
